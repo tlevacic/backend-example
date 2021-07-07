@@ -25,6 +25,20 @@ app.get("/all-users", async (req, res, next) => {
   }
 });
 
+//Returns user
+app.get("/user-current", async (req, res, next) => {
+  try {
+    const user = await User.findOne({ _id: req.query.id });
+    res.json({
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
+    });
+  } catch (error) {
+    res.json(error);
+  }
+});
+
 //Connect to DB
 mongoose.connect(
   "......",
