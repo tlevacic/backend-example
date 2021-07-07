@@ -1,6 +1,7 @@
 const express = require("express"); //node js library for BE
 const mongoose = require("mongoose"); // package for mongoDB
 const User = require("./models/User"); //model for mongoDB
+require("dotenv/config");
 
 //1. create instance of express server
 var app = express();
@@ -41,12 +42,14 @@ app.get("/user-current", async (req, res, next) => {
 
 //Connect to DB
 mongoose.connect(
-  "......",
+  process.env.DB_CONNECTION,
   { useNewUrlParser: true },
   console.log("Connected to DB")
 );
 
+const port = 3000;
+
 //start server
-app.listen(3000, function () {
-  console.log("Started application on port %d", 3000);
+app.listen(port, function () {
+  console.log("Started application on port %d", port);
 });
